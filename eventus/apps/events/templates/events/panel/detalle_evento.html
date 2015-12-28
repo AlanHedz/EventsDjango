@@ -1,0 +1,81 @@
+{% extends "events/base_events.html" %}
+{% block title %}Panel{% endblock title %}
+
+{% block content %}
+
+{% include "events/nav.html" %}
+    <div class="container">
+
+        <div class="page-header">
+            <h4>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'events_app:panel' %}" class="btn btn-success">
+                        <span class="glyphicon glyphicon-chevron-left"></span> Regresar
+                    </a>
+                {% else %}
+                    <a href="{% url 'events_app:index' %}" class="btn btn-success">
+                        <span class="glyphicon glyphicon-chevron-left"></span> Regresar
+                    </a>            
+                {% endif %}
+                <strong>Evento: {{ event.name }}</strong>
+            </h4>
+        </div><!-- page-header -->
+
+        <div class="row">
+            
+            <div class="col-md-3 text-center">
+                <img src="{{ event.imagen.url }}" alt="250x180" class="img-rounded" style="height: 200px;">
+            </div>
+
+            <div class="col-md-9">
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <td>{{ event.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Category</th>
+                            <td>{{ event.category }}</td>
+                        </tr>
+                        <tr>
+                            <th>Content</th>
+                            <td>{{ event.content }}</td>
+                        </tr>
+                        <tr>
+                            <th>Start / Finish</th>
+                            <td>{{ event.start }} / {{ event.finish }}</td>
+                        </tr>
+                        <tr>
+                            <th>Place</th>
+                            <td>{{ event.place }}</td>
+                        </tr>
+                        <tr>
+                            <th>Amount</th>
+                            {% if event.is_free %}
+                                <td><span class="label label-default">Gratuito</span></td>
+                            {% else %}
+                                <td><span class="label label-info">S/. {{ event.amoun }}</span></td>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div><!-- col-md-12 -->
+
+        </div><!-- /row -->
+        <div>
+            <form role="form" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div>
+                    {{form.content}}
+                </div>
+                <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Guardar evento</button>
+                </div>
+            </form>
+        </div>
+    </div><!-- /container -->
+
+{% endblock content %}

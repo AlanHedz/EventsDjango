@@ -1,0 +1,40 @@
+{% extends "events/base_events.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+    {% include "events/nav.html" %}
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<h1 class="text-center">Iniciar Sesión</h1>
+    			<p>&nbsp;</p>
+    		</div>
+    	</div>
+    	<div class="col-md-12 text-center">
+                <div class="col-md-push-4 col-md-4 text-center">
+                    <form role="form" method="POST">{% csrf_token %}
+                         {% if login_form.errors %}
+                            <div class="alert alert-danger text-left" role="alert">
+                                {{ login_form.errors }}
+                            </div>
+                        {% endif %}
+                       
+                        <p class="text-center">Logueate y crea eventos:</p>
+                        <div class="form-group">
+                            {{ login_form.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ login_form.password }}
+                        </div>
+                        <button type="submit" name="register_form" class="btn btn-success btn-lg btn-block">Iniciar Sesión</button>
+                    </form>
+                    <hr>
+                    <p>
+                        <a href="#" class="btn btn-primary btn-lg btn-block">Regitrate con Facebook</a>
+                        <a href="#" class="btn btn-danger btn-lg btn-block">Regitrate con Google+</a>
+                    </p>
+                </div><!-- col-md-6 -->
+    	</div>
+    </div>
+{% endblock content %}

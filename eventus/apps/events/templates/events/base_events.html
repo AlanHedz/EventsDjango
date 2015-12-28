@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+{% endblock css %}
+{% block js %}
+	<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+	<script src="{% static 'js/bootstrap.js' %}"></script>
+{% endblock js %}

@@ -1,0 +1,45 @@
+{% extends "events/base_events.html" %}
+
+{% block title %}Signup{% endblock title %}
+
+{% block content %}
+    {% include "events/nav.html" %}
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-12">
+    			<h1 class="text-center">Registrarse</h1>
+    			<p>&nbsp;</p>
+    		</div>
+    	</div>
+    	<div class="col-md-12 text-center">
+    		
+                <div class="col-md-push-4 col-md-4 text-center">
+
+                    <form role="form" method="POST">{% csrf_token %}
+                    {% if user_register.errors %}
+                            <div class="alert alert-danger text-left" role="alert">
+                                {{ user_register.errors }}
+                            </div>
+                        {% endif %}
+                        <p class="text-center">Registrate y empieza a crear y compartir tus eventos:</p>
+                        <div class="form-group">
+                            {{ user_register.username }}
+                        </div>
+                        <div class="form-group">
+                            {{ user_register.email }}
+                        </div>
+                        <div class="form-group">
+                            {{ user_register.password }}
+                            
+                        </div>
+                        <button type="submit" name="register_form" class="btn btn-success btn-lg btn-block">Iniciar Sesión</button>
+                    </form>
+                    <hr>
+                    <p>
+                        <a href="#" class="btn btn-primary btn-lg btn-block">Regitrate con Facebook</a>
+                        <a href="#" class="btn btn-danger btn-lg btn-block">Regitrate con Google+</a>
+                    </p>
+                </div><!-- col-md-6 -->
+    	</div>
+    </div>
+{% endblock content %}
